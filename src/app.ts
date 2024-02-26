@@ -5,7 +5,6 @@ import { AppError } from "./errors/appErrors";
 const app = Express();
 const port = 2000;
 app.use(Express.json());
-app.use(router);
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {
     if (err instanceof AppError) {
@@ -20,6 +19,7 @@ app.use(
   }
 );
 
+app.use(router);
 app.listen(port, () => {
   console.log(`Server running at port: ${port}`);
 });
