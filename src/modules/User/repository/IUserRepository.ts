@@ -15,7 +15,7 @@ interface IUpdateUserDTO {
 
 interface IUserRepository {
   createUser({ name, email, password }: ICreateUserDTO): Promise<void>;
-  findUserEmail(email: string): IUser;
+  findUserEmail(email: string): Promise<IUser>;
   updateUserAvatar({
     id,
     avatarUrl,
@@ -30,7 +30,7 @@ interface IUserRepository {
     password,
   }: IUpdateUserDTO): Promise<void>;
   removeUserAccount(id: string): void;
-  ListUser(): IUser[];
+  ListUser(): Promise<IUser[]>;
 }
 
 export { ICreateUserDTO, IUpdateUserDTO, IUserRepository };

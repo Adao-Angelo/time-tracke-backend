@@ -4,7 +4,7 @@ interface IUser {
   email: string;
   password: string;
   avatar: string;
-  cretedAt: Date;
+  createdAt: Date;
   updatedAt: Date;
 }
 
