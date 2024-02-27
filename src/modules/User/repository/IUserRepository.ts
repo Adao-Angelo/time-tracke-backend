@@ -29,7 +29,7 @@ interface IUserRepository {
     email,
     password,
   }: IUpdateUserDTO): Promise<void>;
-  removeUserAccount(id: string): void;
+  removeUserAccount(id: string): Promise<void>;
   ListUser(): Promise<IUser[]>;
 }
 
