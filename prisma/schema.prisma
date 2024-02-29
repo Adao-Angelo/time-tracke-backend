@@ -19,9 +19,8 @@ model user {
 
 model task {
   id          String   @id @default(cuid())
-  tutulo      String
+  title       String
   description String
-  color       String
   userId      String
   timeStart   DateTime
   timeEnd     DateTime
