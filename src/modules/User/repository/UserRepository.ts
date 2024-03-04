@@ -5,6 +5,7 @@ import {
 } from "./IUserRepository";
 import prismaClient from "../../../database/@prisma/client";
 import { IUser } from "../mode";
+import { Prisma } from "@prisma/client";
 
 class UserRepository implements IUserRepository {
   constructor() {}
@@ -63,6 +64,10 @@ class UserRepository implements IUserRepository {
   }
   async ListUser(): Promise<IUser[]> {
     return await prismaClient.user.findMany();
+  }
+
+  async listByUserId(id: string): Promise<IUser> {
+    return await prismaClient.user.findUnique({ where: { id: id } });
   }
 }
 

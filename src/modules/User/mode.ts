@@ -3,6 +3,7 @@ interface IUser {
   name: string;
   email: string;
   password: string;
+  admin: boolean;
   avatar: string;
   createdAt: Date;
   updatedAt: Date;
