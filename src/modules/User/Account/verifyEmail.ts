@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { IUserRepository } from "../User/repository/IUserRepository";
-import { AppError } from "../../errors/appErrors";
+import { IUserRepository } from "../../User/repository/IUserRepository";
+import { AppError } from "../../../errors/appErrors";
 class VerifyUserEmail {
   constructor(private userRepository: IUserRepository) {}
   async execute(request: Request, response: Response) {

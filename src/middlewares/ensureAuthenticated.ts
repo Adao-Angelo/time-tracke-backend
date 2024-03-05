@@ -16,7 +16,7 @@ export async function ensureAuthenticated(
   const [, token] = authHeader.split(" ");
 
   try {
-    const { sub: userId } = verify(token, "easy_meal_token") as IPayLoad;
+    const { sub: userId } = verify(token, "time_tracker_token") as IPayLoad;
     const user = UserRepository.listByUserId(userId);
     if (!user) {
       throw new AppError("User does not exists!", 401);

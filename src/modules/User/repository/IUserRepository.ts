@@ -32,6 +32,7 @@ interface IUserRepository {
   removeUserAccount(id: string): Promise<void>;
   ListUser(): Promise<IUser[]>;
   listByUserId(id: string): Promise<IUser>;
+  listByUserEmail(email: string): Promise<IUser>;
 }
 
 export { ICreateUserDTO, IUpdateUserDTO, IUserRepository };
