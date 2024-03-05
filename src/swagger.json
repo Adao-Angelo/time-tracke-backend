@@ -1,0 +1,20 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Time Tracker Documentation",
+    "description": " This is an API Time Tracker",
+    "version": "1.0.0",
+    "contact": {
+      "email": "adaobegginer@gmail.com"
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormant": "JWT"
+      }
+    }
+  }
+}
