@@ -9,8 +9,8 @@ import { AppError } from "../../../../errors/appErrors";
 class CreateUserUseCase {
   constructor(private userRepository: IUserRepository) {}
   async execute({ name, email, password }: ICreateUserDTO) {
-    if (!password) {
-      throw new AppError("Not are passwoed");
+    if (!password || !name || !password) {
+      throw new AppError("Inavalide request body !");
     }
     const hashPassword = await hash(password, 8);
     await this.userRepository.createUser({

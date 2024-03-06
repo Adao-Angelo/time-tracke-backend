@@ -1,4 +1,5 @@
 import { AppError } from "../../../../errors/appErrors";
+import UserRepository from "../../../User/repository/UserRepository";
 import {
   ITasKRepository,
   IUpdateTaskDTO,
@@ -17,6 +18,7 @@ class UpdateTaskUseCase {
     ) {
       throw new AppError("Invalide Request body ");
     }
+    const task = await UserRepository.listByUserId(data.userId);
     return await this.taskRepository.updateUserTask(data);
   }
 }

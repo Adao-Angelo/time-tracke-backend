@@ -13,6 +13,12 @@ class DeleteUserUseCase {
       throw new AppError("send The user Id", 401);
       return;
     }
+
+    const user = await this.userRepository.listByUserId(id);
+    if (!user) {
+      console.log("User Id not exist");
+    }
+
     await this.userRepository.removeUserAccount(id);
   }
 }

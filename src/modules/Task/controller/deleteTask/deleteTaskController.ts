@@ -4,9 +4,9 @@ import deleteTaskUseCase, { DeleteTaskUseCase } from "./deleteTaskUseCase";
 class DeleteTaskController {
   constructor(private listTaskUseCase: DeleteTaskUseCase) {}
   async hanble(request: Request, response: Response) {
-    const { id } = request.body;
+    const id = request.params.id;
     const tasks = await deleteTaskUseCase.execute(id);
-    return response.json(tasks).status(202);
+    return response.json({ message: "sucess" }).status(202);
   }
 }
 

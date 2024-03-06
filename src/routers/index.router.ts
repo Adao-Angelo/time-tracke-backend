@@ -4,6 +4,7 @@ import swaggerDocument from "./../swagger.json";
 import { userRouter } from "./user.router";
 import { taskRouter } from "./Task.router";
 import { autheticationRouter } from "./auth.router";
+
 const router = Router();
 
 router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));

@@ -12,6 +12,10 @@ class UpdateUserUseCase {
     if (!id || !name || !email || !password) {
       throw new AppError("send all data: name, email, password", 402);
     }
+    const user = await this.userRepository.listByUserId(id);
+    if (!user) {
+      console.log("User Id not exist");
+    }
     await this.userRepository.updateUserAccount({ id, name, email, password });
   }
 }

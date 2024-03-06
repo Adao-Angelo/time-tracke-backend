@@ -16,5 +16,532 @@
         "bearerFormant": "JWT"
       }
     }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create User Account",
+        "description": "create new account of the user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Adão Angelo",
+                  "email": "adaobegginer@gmail.com",
+                  "password": "password"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Create with sucess"
+          },
+          "400": {
+            "description": "User already exists"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Users"],
+        "summary": "List all Users",
+        "description": "list all Users",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "avatar": {
+                        "type": "string"
+                      },
+                      "admin": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Users"],
+        "summary": " Update a User account",
+        "description": "Update a  User account ",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "number"
+                  }
+                },
+                "example": {
+                  "id": "clt3lyzcv0001dly09kqnsaut",
+                  "name": "Eduardo jose",
+                  "email": "adaobegginer@gmail.com",
+                  "password": "eduardo"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Ivalide Token"
+          },
+          "400": {
+            "description": "user Already Exists"
+          }
+        }
+      }
+    },
+    "/users/verify_email": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "verify if exist User account by email",
+        "description": "verify if exist User account by email",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "adaobegginer@gmail0004.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  },
+                  "user_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User not exists"
+          }
+        }
+      }
+    },
+    "/users/recover_account": {
+      "patch": {
+        "tags": ["Users"],
+        "summary": "Recover user Account",
+        "description": "Update user password ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "user_id": "808da8dd-bf13-4353-aa13-47367ba88ac1",
+                  "password": "Eduardo005"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": " Password updated with sucess",
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "401": {
+          "description": "User id not exist exists"
+        }
+      }
+    },
+    "/users/{id}": {
+      "delete": {
+        "tags": ["Users"],
+        "summary": " Delete a User",
+        "description": "Delete a  User",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "user id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Ivalide Token"
+          }
+        }
+      }
+    },
+    "/auth": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Authentication",
+        "description": "Athenticated with your account",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "adaobegginer@gmail.com",
+                  "password": "password"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    },
+                    "user_id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": " Email or password Invailid"
+          }
+        }
+      }
+    },
+    "/tasks": {
+      "post": {
+        "tags": ["Tasks"],
+        "summary": "Create a new task",
+        "description": "Create a new task",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "userId": {
+                    "type": "string"
+                  },
+                  "timeStart": {
+                    "type": "date"
+                  },
+                  "timeEnd": {
+                    "type": "date"
+                  }
+                },
+                "example": {
+                  "title": "bay a new car",
+                  "description": "I need to bay a  new car for my family",
+                  "userId": "cptf2359vduiud799d-d45",
+                  "timeStart": "2026-02-27T22:58:15.605Z",
+                  "timeEnd": "2038-02-27T22:58:15.605Z"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Task Already Exists"
+          },
+          "401": {
+            "description": "Ivalide Token"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Tasks"],
+        "summary": "List all Task",
+        "security": [{ "bearerAuth": [] }],
+        "description": "list all task",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "userId": {
+                        "type": "string"
+                      },
+                      "timeStart": {
+                        "type": "date"
+                      },
+                      "timeEnd": {
+                        "type": "date"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Ivalide Token"
+          }
+        }
+      }
+    },
+    "/tasks/{id}": {
+      "delete": {
+        "tags": ["Tasks"],
+        "summary": " Delete a Task",
+        "description": "Delete a  task",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "task id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Ivalide Token"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Tasks"],
+        "summary": " Update a Task by id",
+        "description": "Update a  Task by id",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "task id",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "userId": {
+                    "type": "string"
+                  },
+                  "timeStart": {
+                    "type": "date"
+                  },
+
+                  "timeEnd": {
+                    "type": "date"
+                  }
+                },
+                "example": {
+                  "title": "bay a new car",
+                  "description": "I need to bay a  new car for my family",
+                  "userId": "cptf2359vduiud799d-d45",
+                  "timeStart": "2026-02-27T22:58:15.605Z",
+                  "timeEnd": "2038-02-27T22:58:15.605Z"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Ivalide Token"
+          },
+          "400": {
+            "description": "Task Already Exists"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Tasks"],
+        "summary": " get a Task by id",
+        "description": "get a  Task by id",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "task id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "userId": {
+                        "type": "string"
+                      },
+                      "timeStart": {
+                        "type": "date"
+                      },
+                      "timeEnd": {
+                        "type": "date"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Ivalide Token"
+          },
+          "400": {
+            "description": "Product not Exists"
+          }
+        }
+      }
+    }
   }
 }

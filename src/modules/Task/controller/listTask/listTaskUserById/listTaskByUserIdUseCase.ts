@@ -5,7 +5,7 @@ import TaskRepository from "../../../repository/TaskRepository";
 class ListTaskByUserIdUseCase {
   constructor(private taskRepository: ITasKRepository) {}
   async execute(id: string) {
-    const tasksUser = await this.taskRepository.listUserTaskById(id);
+    const tasksUser = await this.taskRepository.listById(id);
     if (!tasksUser) {
       throw new AppError("Not Find Task", 401);
     }

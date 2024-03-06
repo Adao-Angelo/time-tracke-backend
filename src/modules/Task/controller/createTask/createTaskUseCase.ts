@@ -1,4 +1,5 @@
 import { AppError } from "../../../../errors/appErrors";
+import UserRepository from "../../../User/repository/UserRepository";
 import {
   ICreateTaskDTO,
   ITasKRepository,
@@ -16,6 +17,10 @@ class CreateTaskUseCase {
       !data.userId
     ) {
       throw new AppError("Invalide Request body ");
+    }
+    const user = await UserRepository.listByUserId(data.userId);
+    if (!user) {
+      throw new AppError("User Id Not Exist");
     }
     if (!data.timeStart) {
       data.timeStart = new Date();

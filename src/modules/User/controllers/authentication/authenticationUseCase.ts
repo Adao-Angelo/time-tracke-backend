@@ -16,8 +16,8 @@ interface IResponse {
 class AutenticationUserUseCase {
   constructor(private userRepository: IUserRepository) {}
   async execute({ email, password }: IRequest) {
-    if (!email) {
-      throw new AppError("not exist email");
+    if (!email || !password) {
+      throw new AppError("Invalide request body!");
     }
     const user = await this.userRepository.listByUserEmail(email);
 
