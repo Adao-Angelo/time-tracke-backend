@@ -1,6 +1,7 @@
 import { Task } from "../model/Task";
 
 interface ICreateTaskDTO {
+  id: string;
   title: string;
   description: string;
   userId: string;

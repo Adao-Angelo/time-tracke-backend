@@ -9,8 +9,14 @@ import { AppError } from "../../../../errors/appErrors";
 class CreateUserUseCase {
   constructor(private userRepository: IUserRepository) {}
   async execute({ name, email, password }: ICreateUserDTO) {
-    if (!password || !name || !password) {
+    if (!email || !name || !password) {
       throw new AppError("Inavalide request body !");
+    }
+    const user = await this.userRepository
+      .findUserEmail(email)
+      .catch((err) => console.log(err));
+    if (user) {
+      throw new AppError("User email alread exist!");
     }
     const hashPassword = await hash(password, 8);
     await this.userRepository.createUser({

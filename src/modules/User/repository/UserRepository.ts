@@ -5,7 +5,7 @@ import {
 } from "./IUserRepository";
 import prismaClient from "../../../database/@prisma/client";
 import { IUser } from "../mode";
-import { Prisma } from "@prisma/client";
+import { v4 as uuidV4 } from "uuid";
 
 class UserRepository implements IUserRepository {
   constructor() {}
@@ -13,6 +13,7 @@ class UserRepository implements IUserRepository {
   async createUser({ name, email, password }: ICreateUserDTO): Promise<void> {
     await prismaClient.user.create({
       data: {
+        id: uuidV4(),
         name,
         email,
         password,
