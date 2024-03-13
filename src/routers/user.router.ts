@@ -9,8 +9,7 @@ import uploadConfig from "../config/upload";
 import multer from "multer";
 import verifyEmail from "../modules/User/Account/verifyEmail";
 const userRouter = Router();
-const uploadImageProduct = multer(uploadConfig.upload("./tmp/avatar"));
-
+const uploadImageProduct = multer({ dest: "uploads/" });
 userRouter.post("/", async (request, response) => {
   await createUserController.randle(request, response);
 });
