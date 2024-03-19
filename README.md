@@ -9,8 +9,14 @@ Organization by Project or List: Tasks can be organized into projects or lists, 
 Due Dates and Reminders: Task managers often allow you to set due dates for each task. Automatic reminders or notifications can be set up to alert users of impending deadlines.
 
 
+## how to start server 
+
+### install dependences 
+    npm ci 
+### start project 
+    npm run dev 
+
+
 ## Documentation:
 
-<a href ="">Show Documentation -></a>
-
-## 
+<a href ="http://localhost:2000/api-docs">Show Documentation -></a>
