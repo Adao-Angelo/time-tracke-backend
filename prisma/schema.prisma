@@ -23,6 +23,7 @@ model task {
   title       String
   description String
   userId      String
+  states      String
   timeStart   DateTime
   timeEnd     DateTime
   createdAt   DateTime @default(now())
