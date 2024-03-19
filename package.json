@@ -4,7 +4,10 @@
   "description": "This is a timesheet tracking application that aims to manage and record employees' working time.",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch ./src/app.ts"
+    "dev": "tsx watch ./src/app.ts",
+    "migrate": "npx prisma migrate dev",
+    "biulder": "tsup ./src",
+    "live": "node ./dist/app.js "
   },
   "keywords": [
     "time tracker",
@@ -38,7 +41,11 @@
     "prisma": "^5.10.2",
     "socket.io": "^4.7.4",
     "swagger-ui-express": "^5.0.0",
+    "tsup": "^8.0.2",
     "tsx": "^4.7.1",
     "uuid": "^9.0.1"
+  },
+  "engines": {
+    "node": "20"
   }
 }
